@@ -54,8 +54,6 @@ new_table4a<-melt(table4a, id.vars="country")
 
 new_table4a
 colnames(new_table4a)[2:3]<-c("year","tb")
-colnames(new_table4a)[c(2,3)]<-c("year","tb")
-colnames(new_table4a)<-c("country","year","tb")
 
 new_table4a
 #      country year     tb
@@ -92,6 +90,18 @@ with(low, t.test(Mussel_count[Treatment=="Caged"], Mussel_count[Treatment=="Unca
 # Copy and paste t-test results here 
 ##########################################
 
+#data:  Mussel_count[Treatment == "Caged"] and Mussel_count[Treatment == "Uncaged"]
+#t = 8.1262, df = 3.8173, p-value = 0.001518
+#alternative hypothesis: true difference in means is not equal to 0
+#95 percent confidence interval:
+# 37.36931 77.29736
+#sample estimates:
+#mean of x mean of y 
+# 94.00000  36.66667 
+
+
+
+
 #2. Use ANOVA
 
 aov1 = aov(Mussel_count ~ Treatment,data=low) 
@@ -101,7 +111,13 @@ summary(aov1)
 # Copy and paste the ANOVA results here 
 ##########################################
 
+#            Df Sum Sq Mean Sq F value  Pr(>F)   
+#Treatment    1   4931    4931   66.04 0.00125 **
+#Residuals    4    299      75                   
+#---
+#Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 # --- if we have some time ---
 ## Plot the results
+
 boxplot(Mussel_count ~ Treatment,data=low)
